@@ -1,19 +1,29 @@
 # How to set up Google Cloud Platform
 
 ## Reference pages
-+ [Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart)
 + [Install gcloud](https://cloud.google.com/sdk/docs/downloads-apt-get)
++ [Gcloud config](https://cloud.google.com/sdk/gcloud/reference/config) 
++ [Gcloud auth](https://cloud.google.com/sdk/gcloud/reference/auth/)
 + [Create Project](https://cloud.google.com/sdk/gcloud/reference/projects/create)
 + [Enable Services](https://cloud.google.com/sdk/gcloud/reference/services/)
 + [Service Accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
 + [Activate Service Account](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
++ [Dialogflow](https://dialogflow.com/)
++ [Enterprise Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart)
++ [pypi](https://pypi.org/project/pip/) 
++ [Virtualenv](https://virtualenv.pypa.io/en/stable/) 
++ [Client Libaries](https://cloud.google.com/dialogflow-enterprise/docs/reference/libraries/overview)
 + [Python Client github repo](https://github.com/dialogflow/dialogflow-python-client-v2)
 + [Python Client docs](https://dialogflow-python-client-v2.readthedocs.io/en/latest/)
 + [DialogFlow Client docs](https://dialogflow-python-client-v2.readthedocs.io/en/latest/gapic/v2/api.html)
 + [Dialoflow Types docs](https://dialogflow-python-client-v2.readthedocs.io/en/latest/gapic/v2/types.html)
 
+## QuickStart
++ [I don't want to understand, just get me started](#QuickStart)
+
 ## Steps
 * [Installing gcloud](#InstallGcloud)
+* [Set up Configuration Account](#setConfigAccount)
 * [Creating a project](#CreateProject)
 * [Enabling Services](#EnableServices)
 * [Creating a Service Account](#CreateServiceAccount)
@@ -22,6 +32,40 @@
 * [Create Dialogflow agent](#CreateAgent)
 * [Using the Python Client library](#PythonClient)
 
+<a name="QuickStart"></a>
+
+## QuickStart
+**Note**: The following script to get you started asks for sudo permission for some 
+commands. As a general rule, it's probably smarter to check out what commands are being
+run with sudo permission just to be safe. I'd recommend at least checking out what is 
+being run before running it in the nature of fostering good habits. 
+
+### Quick Explanation
+
+By going through the following instructions you will have:
++ Downloaded the Google Cloud Platform command-line interface
++ Enabled the Google Cloud SDK for an email account.
++ Created a Google Cloud project
++ Created a Google Cloud service Account
++ Downloaded pip
++ Downloaded virtualenv
++ Created a virtual environment for Python
++ Installed the Python dialogflow client library in a virtual environment
+
+
+1. Clone the repository.
+`git clone https://github.com/AlexSissoko/dialogflowMemories`
+
+1. Open up **setup.sh**. Fill in the 4 given variables with your chosen values. Save. Exit.
+    * **mainAccountName** should be a valid email address.
+    * **projectId** must have only lowercase letters, hyphens, or numbers.
+    * **serviceAccountName** must have only lowercase letters, hyphens, or numbers.
+    * **envName** Whatever you want it to be.
+2. Make sure **setup.sh** is executable. 
+  If not, `chmod 700 setup.sh`
+3. Run `./setup.sh`. Follow any instructions you are given when prompted. 
+4. Follow the instructions at [Create Dialogflow Agent](#CreateAgent)
+5. Huzzah! You're ready to go!
 
 ## Steps
 <a name="InstallGcloud"></a>
@@ -38,7 +82,31 @@ detailed explanations of the following instructions.
 
 4. `sudo apt-get update && sudo apt-get install google-cloud-sdk`
 
-5. `gcloud init`
+<a name="setConfigAccount"></a>
+
+### Set up Configuration Account
+Refer to [Gcloud config](https://cloud.google.com/sdk/gcloud/reference/config) and 
+[Gcloud auth](https://cloud.google.com/sdk/gcloud/reference/auth/) for more
+detailed explanations of the following instructions.
+
+1. Peek at the current configuration. 
+`gcloud config list`
+
+The output should be: 
+```
+[core]
+disable_usage_reporting = True
+Your active configuration is: [default]
+```
+
+2. Set the main email address/account you want to use as the owner of your project.
+`gcloud config set account [email-address]`
+
+3. Active the gcloud sdk for your account.
+`gcloud auth login`
+
+This will take you to your default web browser. You will need to log in to your account/email.
+Follow the instructions when prompted.
 
 <a name="CreateProject"></a>
 
@@ -48,15 +116,15 @@ for more detailed explanations and examples.
 
 1. `gcloud projects create [NewProject-ID]`
 
-2. `gcloud init`
+2. `gcloud config set project [NewProject-ID]`
 
-If you just want to change the default configuration, then just reinitialize **[default]**
-configuration. Otherwise:
+This just changes the default configuration. If you want to initialize a new configuration, then:
 
-1. Choose "Create a new configuration"
-2. Enter new configuration name
-3. Choose a configuration account
-4. Choose newly created project
+1. `gcloud init`
+2. Choose "Create a new configuration"
+3. Enter new configuration name
+4. Choose a configuration account
+5. Choose newly created project
 
 <a name="EnableServices"></a>
 
@@ -137,11 +205,12 @@ Refer to [Activate Service Account](https://cloud.google.com/sdk/gcloud/referenc
 `gcloud auth activate-service-account [ACCOUNT_NAME] --key-file=[PATH_TO_KEY_FILE]`
 
 Remember, the service account name is of the form [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com.
+This sets the service account as the account for your current configuration.
 
 <a name="SetEnvironmentVariable"></a>
 
 ### Set credentials environment variable 
-Refer to [Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart).
+Refer to [Enterprise Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart).
 
 `export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"`
 
@@ -153,15 +222,29 @@ variable each time unless you put a command in your bashrc.
 <a name="CreateAgent"></a>
 
 ### Create Dialogflow agent
-Refer to [Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart).
 If at this point, you do not yet have a dialogflow agent associated with the project, create one.
-Follow the quickstart reference page's instructions on this in order to do so.
+Refer to [Enterprise Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart)
+to create an enterprise edition agent. 
+
+1. Go to [Dialogflow](https://dialogflow.com/)
+2. Select **Go to Console**
+3. Log in/create account with the same email address you used in creating your Google Cloud project. 
+4. In the top left corner, under the Dialogflow logo, there should be some buttons that you can
+press in order to start the process to create a new agent. This will be left as an exercise 
+for the reader. 
+5. Choose agent name. Choose default agent language. Choose default agent time zone.
+6. In the Google Project section click the **Create a new Google Project** segment. Under 
+**OR IMPORT AN EXISTING PROJECT**  you should see the project you just created. Select it.
+7. Press the blue **CREATE** button.
 
 <a name="PythonClient"></a>
 
 ### Using the Python client library.
 I used the Python client library. If you want to use a different language, refer to 
-[Libaries](https://cloud.google.com/dialogflow-enterprise/docs/reference/libraries/overview).
+[Client Libaries](https://cloud.google.com/dialogflow-enterprise/docs/reference/libraries/overview).
+Refer to [pypi](https://pypi.org/project/pip/) for more information about pip, 
+and [Virtualenv](https://virtualenv.pypa.io/en/stable/) for more information about 
+virtualenv.
 
 **Note**: This is for Python 2.7, but it should work pretty similarly for python3.
 
