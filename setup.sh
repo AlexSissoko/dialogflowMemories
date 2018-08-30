@@ -1,5 +1,6 @@
-projectId=""
-serviceAccountName=""
+mainAccountName="" #This should be an email address
+projectId="" #Must have only lowercaseletters,hyphens,numbers
+serviceAccountName="" #Must have only lowercaseletters,hyphens,numbers
 envName=""
 
 
@@ -10,13 +11,20 @@ installGcloud () {
     sudo apt-get update && sudo apt-get install google-cloud-sdk
 }
 
-5. `gcloud init`
+setConfigAccount () {
+    gcloud config set account $mainAccountName
+    gcloud auth login
+}
+
 
 createProject () {
     gcloud projects create $projectId
 }
 
-2. `gcloud init`
+setConfigProject () {
+    gcloud config set project $projectId
+}
+
 
 enableProjectServices () {
     gcloud services enable \
@@ -25,6 +33,7 @@ enableProjectServices () {
         dialogflow.googleapis.com
 }
 
+#Gives the service account admin role, not client
 createServiceAccount () {
     gcloud iam service-accounts create $serviceAccountName --display-name $serviceAccountName
     gcloud iam service-accounts keys create "./key.json" \
@@ -44,13 +53,23 @@ exportCredentials () {
 }
 
 createVirtualEnv () {
-    sudo apt-get install pip
+    sudo apt-get install python-pip
     pip install --upgrade virtualenv
     virtualenv $envName
 }
 
 installDialogflow () {
-    source "$envName/bin/activate"
+    source "./$envName/bin/activate"
     pip install dialogflow
 }
 
+installGcloud
+setConfigAccount
+createProject
+setConfigProject
+enableProjectServices
+createServiceAccount
+activateServiceAccount
+exportCredentials
+createVirtualEnv
+installDialogflow
