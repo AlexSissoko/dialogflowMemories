@@ -65,21 +65,22 @@ Refer to [Enable Services](https://cloud.google.com/sdk/gcloud/reference/service
 for more detailed explanations and examples.
 
 1. `gcloud services list`
+
 This lists what services you have already enabled for the project. If the response you 
 get is something like `PERMISSION_DENIED`, then try to `gcloud init` using the original 
 email/account used to make the project. This account should have the proper permissions. 
 
 2. `gcloud services list --available`
-This lists what services you can enable for the project.
 
-3. 
+This lists what services you can enable for the project.
+ 
+3. Enable dialogflow as well as some permission/credential apis for the project.
     ```
     gcloud services enable \
     iam.googleapis.com \
     iamcredentials.googleapis.com \
     dialogflow.googleapis.com
     ```
-This enables dialogflow as well as some permission/credential apis for the project.
 
 <a name="CreateServiceAccount"></a>
 
@@ -88,18 +89,18 @@ Refer to [Service Accounts](https://cloud.google.com/iam/docs/creating-managing-
 for more detailed explanations and examples.
 
 1. `gcloud iam service-accounts create [SA-NAME] --display-name "[SA-DISPLAY-NAME]"`
-There should be a response saying that the account was created. To see what accounts there
-are in a particular project, run `gcloud iam service-accounts list`
 
-Move to whichever directory you want to hold your service account key. Run:
-2. 
+There should be a response saying that the account was created. To see what accounts there
+are in a particular project, run `gcloud iam service-accounts list`.
+
+2. Move to whichever directory you want to hold your service account key. Run:
     ```
     gcloud iam service-accounts keys create ./key.json \
         --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
     ```
 There should be a response saying that the key was created.
 
-3. 
+3. Run:
     ```
     gcloud iam service-accounts keys list \ 
 	--iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
@@ -115,13 +116,13 @@ This lists the keys assocatied with the account.
 4. `gcloud projects get-iam-policy [PROJECT-ID]`
 Lets you see the bindings and roles of accounts in the project.
 
-5. 
+5. Add a role to your service account.
     ```
     gcloud projects add-iam-policy-binding [PROJECT-ID] \
 	--member serviceAccount:[SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com --role roles/[roleType]
     ```
   
-Adds a role to your service account. Typical role value should be `dialogflow.client` as [roleType].
+Typical role value should be `dialogflow.client` as [roleType].
 However, I've encountered bugs where the first gservice account that you create in the client role
 somehow doesn't work properly (can't use dialogflow api). Creating a second gservice account 
 and then giving it the client role will work as intended. Also, if you're lazy and also need other
