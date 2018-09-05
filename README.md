@@ -1,4 +1,4 @@
-#DialogflowMemories
+# DialogflowMemories
 Just some basic instructions on how to get set up to start creating and 
 modifying your own DialogFlow agent
 
@@ -6,6 +6,7 @@ modifying your own DialogFlow agent
 # How to set up Google Cloud Platform
 
 ## Reference pages
+# Getting Set up
 + [Install gcloud](https://cloud.google.com/sdk/docs/downloads-apt-get)
 + [Gcloud config](https://cloud.google.com/sdk/gcloud/reference/config) 
 + [Gcloud auth](https://cloud.google.com/sdk/gcloud/reference/auth/)
@@ -13,6 +14,7 @@ modifying your own DialogFlow agent
 + [Enable Services](https://cloud.google.com/sdk/gcloud/reference/services/)
 + [Service Accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
 + [Activate Service Account](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
+# Dialogflow agent docs
 + [Dialogflow](https://dialogflow.com/)
 + [Enterprise Quickstart](https://cloud.google.com/dialogflow-enterprise/docs/quickstart)
 + [pypi](https://pypi.org/project/pip/) 
@@ -22,6 +24,7 @@ modifying your own DialogFlow agent
 + [Python Client docs](https://dialogflow-python-client-v2.readthedocs.io/en/latest/)
 + [DialogFlow Client docs](https://dialogflow-python-client-v2.readthedocs.io/en/latest/gapic/v2/api.html)
 + [Dialoflow Types docs](https://dialogflow-python-client-v2.readthedocs.io/en/latest/gapic/v2/types.html)
++ [Dialogflow RPC reference](https://cloud.google.com/dialogflow-enterprise/docs/reference/rpc/)
 
 ## QuickStart
 + [I don't want to understand, just get me started](#QuickStart)
