@@ -51,6 +51,8 @@ By going through the following instructions you will have:
 + Downloaded virtualenv
 + Created a virtual environment for Python
 + Installed the Python dialogflow client library in a virtual environment
++ Created a Dialogflow account
++ Created a Dialogflow agent
 
 
 1. Clone the repository.
@@ -248,7 +250,7 @@ virtualenv.
 
 **Note**: This is for Python 2.7, but it should work pretty similarly for python3.
 
-1. Install pip: `sudo apt-get install pip`
+1. Install pip: `sudo apt-get install python-pip`
 2. Install virtualenv: `pip install --upgrade virtualenv`
 3. Create virtual environment : `virtualenv [envName]`
 This creates a virtual environment with your default python version
