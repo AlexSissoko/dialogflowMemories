@@ -1,4 +1,4 @@
-import dialogflow as df 
+import dialogflow as df
 import argparse
 import sys
 from google.api_core import page_iterator, operation
@@ -9,7 +9,7 @@ from entity_type_manager import create_entity_type, clear_entity_types
 from entity_manager import create_entity
 
 def add_name_type(project_id):
-    entities = [create_entity('Celdry', ['Celdryn'])]
+    entities = [create_entity('Celdryn', ['Celdryn'])]
     create_entity_type(
             project_id, 'Name', df.enums.EntityType.Kind.KIND_LIST, entities)
 
@@ -79,7 +79,7 @@ def test_add_phrases(project_id):
         print('Add Intent Phrases: Failed')
         return False
 
-def test_update_phrases(project_id): 
+def test_update_phrases(project_id):
     try:
         part_one = create_tf_part('Get replaced extras!')
         tf = create_tf([part_one])
@@ -135,7 +135,7 @@ def test_add_event(project_id):
         return False
 
 def test_add_parameter(project_id):
-    try: 
+    try:
         param = create_basic_parameter('Felys', '@Name', True)
         resp = add_parameter(project_id, 'Calimer', param)
         assert isinstance(resp, df.types.Intent)
@@ -170,13 +170,13 @@ def evaluate_functions(project_id):
     tests_passed += test_get_intent(args.project_id)
     tests_passed += test_add_output_context(args.project_id)
     tests_passed += test_add_input_context(args.project_id)
-    tests_passed += test_add_event(args.project_id) 
+    tests_passed += test_add_event(args.project_id)
     tests_passed += test_add_parameter(args.project_id)
     tests_passed += test_add_phrases(args.project_id)
     tests_passed += test_update_phrases(args.project_id)
     tests_passed += test_delete_phrases(args.project_id)
     tests_passed += test_clear_intents(args.project_id)
-    
+
     clear_entity_types(project_id)
     print('Intent Working functions: {}/13'.format(tests_passed))
 

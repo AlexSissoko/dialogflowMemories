@@ -1,8 +1,8 @@
-import dialogflow as df 
+import dialogflow as df
 from google.api_core import exceptions
 
 def get_entity_types(project_id):
-    try: 
+    try:
         client = df.EntityTypesClient()
         project_path = client.project_agent_path(project_id)
         return client.list_entity_types(project_path)
@@ -27,7 +27,7 @@ def get_entity_type(project_id, type_name):
 
 def get_entity_type_path(project_id, type_name):
     entity_type = get_entity_type(project_id, type_name)
-    if entity_type == None: 
+    if entity_type == None:
         raise ValueError("EntityType '{}' does not exist!".format(type_name))
     return entity_type.name
 
@@ -53,11 +53,11 @@ def create_entity_type(project_id, type_name, kind, entities=[]):
         return None
 
 def delete_entity_type(project_id, type_name):
-    try: 
+    try:
         client = df.EntityTypesClient()
 
         #Not particularly efficient, but good for abstraction
-        path = get_entity_type_path(project_id, type_name) 
+        path = get_entity_type_path(project_id, type_name)
         #Returns None, even on success
         client.delete_entity_type(path)
         print('Entity Type deleted: {}'.format(type_name))
@@ -78,7 +78,7 @@ def clear_entity_types(project_id):
         for entity_type in get_entity_types(project_id):
             entity_type_names.append(entity_type.name)
 
-        response = client.batch_delete_entity_types(path, entity_type_names) 
+        response = client.batch_delete_entity_types(path, entity_type_names)
         print('Entity types deleted: {}'.format(entity_type_names))
         return response
     except exceptions.ServiceUnavailable as e:
