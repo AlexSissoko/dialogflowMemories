@@ -81,7 +81,7 @@ Retrieves the path (or full name) of the specified entity type.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the desired entity type |
-Returns `str` of the form ????????????????????.
+Returns `str` of the form `projects/{project_id}/agent/entityTypes/{entity_type_id}`.
 
 <a name="GetEntityTypeId"></a>
 ### get_entity_type_id
@@ -91,7 +91,7 @@ Retrieves the id number of the specified entity type.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the desired entity type |
-Returns `str`, a permutation of numbers and lowercase letters.
+Returns `str`, a permutation of numbers, lowercase letters and hyphens.
 
 <a name="CreateEntityType"></a>
 ### create_entity_type
@@ -316,7 +316,7 @@ Adds training phrases to the specified intent.
 Training phrases aren't just strings. Yay!
 A training phrase is composed primarily of training phrase parts and the training phrase type.
 
-**Note**: The parts variable that belongs to a training phrase instance is a `TODO`, so certain list operations you might think of using won't work on it.
+**Note**: The parts variable that belongs to a training phrase instance is an instance of `google.protobuf.pyext._message.RepeatedCompositeContainer`, so certain `list` operations you might think of using won't work on it.
 
 ###### Training phrase Part
 + Type: `dialogflow.types.Intent.TrainingPhrase.Part`
