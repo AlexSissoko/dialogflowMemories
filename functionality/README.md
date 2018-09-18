@@ -52,6 +52,7 @@ Retrieves a list of the entity types defined for the specified agent.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
+
 Returns `google.api_core.page_iterator.GRPCIterator`
 
 <a name="ListEntityTypes"></a>
@@ -61,6 +62,7 @@ Prints out the entity types defined for the specified agent.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
+
 No return type.
 
 <a name="GetEntityType"></a>
@@ -71,6 +73,7 @@ Retrieves the specified entity type.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the desired entity type. |
+
 Returns `dialogflow.types.EntityType`
 
 <a name="GetEntityTypePath"></a>
@@ -80,7 +83,8 @@ Retrieves the path (or full name) of the specified entity type.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
-| type_name | `str` | The display name of the desired entity type |
+| type_name | `str` | The display name of the desired entity type. |
+
 Returns `str` of the form `projects/{project_id}/agent/entityTypes/{entity_type_id}`.
 
 <a name="GetEntityTypeId"></a>
@@ -90,7 +94,8 @@ Retrieves the id number of the specified entity type.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
-| type_name | `str` | The display name of the desired entity type |
+| type_name | `str` | The display name of the desired entity type. |
+
 Returns `str`, a permutation of numbers, lowercase letters and hyphens.
 
 <a name="CreateEntityType"></a>
@@ -107,9 +112,10 @@ A `KIND_LIST` entity type allows entities to have only a single synonym that mus
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
-| type_name | `str` | The display name of the desired entity type |
-| kind | `dialogflow.enums.EntityType.Kind` | Describes how the entity mapping will work for this entity type |
+| type_name | `str` | The display name of the desired entity type. |
+| kind | `dialogflow.enums.EntityType.Kind` | Describes how the entity mapping will work for this entity type. |
 | entities | `list` | A list of entities that belong to the entity type. Default value is empty list. |
+
 Returns `dialogflow.types.EntityType`, the newly created entity type.
 
 <a name="DeleteEntityType"></a>
@@ -119,7 +125,8 @@ Deletes an entity type with the specified name.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
-| type_name | `str` | The display name of the desired entity type |
+| type_name | `str` | The display name of the desired entity type. |
+
 Returns `True` on success, `False` on failure.
 
 <a name="ClearEntityTypes"></a>
@@ -129,7 +136,8 @@ Clears all entity types belonging to the specified agent.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
-| type_name | `str` | The display name of the desired entity type |
+| type_name | `str` | The display name of the desired entity type. |
+
 Returns `google.api_core.operation.Operation`.
 
 So, when there are calls to the api that can take a decent amount of time, then the api will return an `Operation` instance so that you can handle them either synchronously or asynchronously. Deciding how you want to handle them is entirely up to you.
@@ -144,6 +152,7 @@ Checks that an entity type exists before attempting any operations on it.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being checked.|
+
 Returns `dialogflow.types.EntityType`
 
 <a name="GetEntities"></a>
@@ -154,6 +163,7 @@ Retrieves entities that belong to a specified Entity Type.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type whose entities are being retrieved.|
+
 Returns `google.protobuf.pyext._message.RepeatedCompositeContainer`.
 
 <a name="ListEntities"></a>
@@ -164,6 +174,7 @@ List the entities belonging to the specified Entity Type.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type whose entities are being listed.|
+
 No return type.
 
 <a name="GetEntity"></a>
@@ -175,6 +186,7 @@ Retrieves an entity with the specified value belonging to the specified Entity T
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being searched.|
 | value | `str` | The entity value being searched for. |
+
 Returns `dialogflow.types.EntityType.Entity` on success. `None` on failure.
 
 <a name="AddEntity"></a>
@@ -186,6 +198,7 @@ Adds an entity to the specified Entity Type.
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being modified.|
 | entity | `dialogflow.types.EntityType.Entity` | The entity value being added. |
+
 Returns `google.api_core.operation.Operation`.
 
 <a name="AddEntities"></a>
@@ -197,6 +210,7 @@ Adds multiple entities to the specified Entity Type.
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being modified.|
 | entities | `list` | The list of entities to be added. |
+
 Returns `google.api_core.operation.Operation`.
 
 <a name="UpdateEntities"></a>
@@ -208,6 +222,7 @@ Updates the entity values of the specified Entity Type. This differs from [add_e
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being modified.|
 | entities | `list` | The list of entity values that will replace the existing ones. |
+
 Returns `google.api_core.operation.Operation`.
 
 <a name="DeleteEntity"></a>
@@ -219,6 +234,7 @@ Deletes an entity from the specified Entity Type.
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being modified.|
 | entity_value | `str` | The entity value being deleted. |
+
 Returns `google.api_core.operation.Operation`.
 
 <a name="DeleteEntities"></a>
@@ -230,6 +246,7 @@ Deletes multiple entities from the specified Entity Type.
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being modified.|
 | entity_values | `list` | The list of entity values being deleted. |
+
 Returns `google.api_core.operation.Operation`.
 
 <a name="GetEntitySynonyms"></a>
@@ -241,6 +258,7 @@ Retrieves the synonyms of a entity with the specified value.
 | project_id | `str` | The id name of the agent's project. |
 | type_name | `str` | The display name of the entity type being searched through.|
 | entity_value | `str` | The entity value whose synonyms are being checked for. |
+
 Returns `google.protobuf.pyext._message.RepeatedScalarContainer`.
 
 
@@ -252,6 +270,7 @@ Retrieves the intents in the specified project.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
+
 Returns `google.api_core.page_iterator.GRPCIterator`.
 
 <a name="ListIntents"></a>
@@ -261,6 +280,7 @@ Lists the intents in the specified project.
 | Param | Type | Description |
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
+
 No return type.
 
 <a name="GetIntentPath"></a>
@@ -271,6 +291,7 @@ Retrieves full path name of the intent with the specified display name.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent who's path we want. |
+
 Returns `str`.
 
 <a name="CreateBlankIntent"></a>
@@ -281,6 +302,7 @@ Creates a blank intent. The only thing specified is the intent name.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to create. |
+
 Returns `dialogflow.types.Intent`.
 
 <a name="DeleteIntent"></a>
@@ -291,6 +313,7 @@ Deletes the intent with the specified intent name.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to delete. |
+
 Returns `bool` (The actual delete operation on a dialogflow client returns `None`).
 
 <a name="GetIntent"></a>
@@ -307,6 +330,7 @@ The view parameter can have two possible values : `INTENT_VIEW_FULL` and `INTENT
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent who's path we want. |
 | view | `str` | The view that we is used when the specified intent is returned. Default value: `None`|
+
 Returns `dialogflow.types.Intent`.
 
 <a name="AddIntentPhrases"></a>
@@ -347,6 +371,7 @@ A training phrase is composed primarily of training phrase parts and the trainin
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to modify. |
 | training_phrases | `list` | The list of training phrases that we want to add to the intent. Training phrases are of the type `dialogflow.types.Intent.TrainingPhrase` |
+
 Returns `dialogflow.types.Intent`.
 
 <a name="UpdateIntentPhrases"></a>
@@ -358,6 +383,7 @@ Updates training phrases in the specified intent. Differs from [add_intent_phras
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to modify. |
 | training_phrases | `list` | The list of training phrases that we want to update the intent with |
+
 Returns `dialogflow.types.Intent`.
 
 <a name="DeleteTrainingPhrases"></a>
@@ -368,6 +394,7 @@ Deletes all training phrases in the specified intent.
 | --- | --- | --- |
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to modify. |
+
 Returns `dialogflow.types.Intent`.
 
 <a name="AddOutputContext"></a>
@@ -383,6 +410,7 @@ Also, a context's full name is of the form `projects/{project_id}/agent/sessions
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to modify. |
 | context | `dialogflow.types.Context` | The context to be added to the intent. |
+
 Returns `dialogflow.types.Intent`.
 
 <a name="AddInputContext"></a>
@@ -394,6 +422,7 @@ Adds an input context to the specified intent. This context will need to be pres
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to modify. |
 | context_name | `str` | The name of the input context to be added to the intent. This is expanded to a full context name in the function to be added to the intent. |
+
 Returns `dialogflow.types.Intent`.
 
 <a name="AddParameter"></a>
@@ -407,7 +436,9 @@ _Notes_: The parameter's `entity_type_display_name` value must be an existing en
 | project_id | `str` | The id name of the agent's project. |
 | intent_name | `str` | The display name of the intent we want to modify. |
 | parameter | `df.types.Intent.Parameter` | The parameter to be added to the intent. |
+
 Returns `dialogflow.types.Intent`.
+
 <a name="ClearIntents"></a>
 ### clear_intents
 Deletes all intents belonging to the agent in the specified project.
