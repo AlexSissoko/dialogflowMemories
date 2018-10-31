@@ -5,47 +5,46 @@ These are just simple illustrations of functions that execute basic Dialogflow f
 The relatively useless `try/except` blocks are added as an illustration of how to handle exceptions that will be thrown by errors due to connections with dialogflow. It's simply a matter of import the proper module `from google.api_core import exceptions` and then treating these `exceptions` in the same way that you would in-built ones.
 
 ## Entity Type Manager
-+ [get_entity_types](#GetEntityTypes)
-+ [list_entity_types](#ListEntityTypes)
-+ [get_entity_type](#GetEntityType)
-+ [get_entity_type_path](#GetEntityTypePath)
-+ [get_entity_type_id](#GetEntityTypeId)
-+ [create_entity_type](#CreateEntityType)
-+ [delete_entity_type](#DeleteEntityType)
-+ [clear_entity_types](#ClearEntityTypes)
++ [get_entity_types](#get_entity_types)
++ [list_entity_types](#list_entity_types)
++ [get_entity_type](#get_entity_type)
++ [get_entity_type_path](#get_entity_type_path)
++ [get_entity_type_id](#get_entity_type_id)
++ [create_entity_type](#create_entity_type)
++ [delete_entity_type](#delete_entity_type)
++ [clear_entity_types](#clear_entity_types)
 
 ## Entity Manager
-+ [check_entity_type](#CheckEntityType)
-+ [get_entities](#GetEntities)
-+ [list_entities](#ListEntities)
-+ [get_entity](#GetEntity)
-+ [add_entity](#AddEntity)
-+ [add_entities](#AddEntities)
-+ [update_entities](#Update_entities)
-+ [delete_entity](#DeleteEntity)
-+ [delete_entities](#DeleteEntities)
-+ [get_entity_synonyms](#GetEntitySynonyms)
++ [check_entity_type](#check_entity_type)
++ [get_entities](#get_entities)
++ [list_entities](#list_entities)
++ [get_entity](#get_entity)
++ [add_entity](#add_entity)
++ [add_entities](#add_entities)
++ [update_entities](#update_entities)
++ [delete_entity](#delete_entity)
++ [delete_entities](#delete_entities)
++ [get_entity_synonyms](#get_entity_synonyms)
 
 ## Intent Manager
-+ [get_intents](#GetIntents)
-+ [list_intents](#ListIntents)
-+ [get_intent_path](#GetIntentPath)
-+ [create_blank_intent](#CreateBlankIntent)
-+ [delete_intent](#DeleteIntent)
-+ [get_intent](#GetIntent)
-+ [add_intent_phrases](#AddIntentPhrases)
-+ [update_intent_phrases](#UpdateIntentPhrases)
-+ [delete_training_phrases](#DeleteTrainingPhrases)
-+ [add_output_context](#AddOutputContext)
-+ [add_input_context](#AddInputContext)
-+ [add_parameter](#AddParameter)
-+ [clear_intents](#ClearIntents)
-+ [Creating an Update Mask Example](#UpdateMask)
++ [get_intents](#get_intents)
++ [list_intents](#list_intents)
++ [get_intent_path](#get_intent_path)
++ [create_blank_intent](#create_blank_intent)
++ [delete_intent](#delete_intent)
++ [get_intent](#get_intent)
++ [add_intent_phrases](#add_intent_phrases)
++ [update_intent_phrases](#update_intent_phrases)
++ [delete_training_phrases](#delete_intent_phrases)
++ [add_output_context](#add_output_context)
++ [add_input_context](#add_input_context)
++ [add_parameter](#add_parameter)
++ [clear_intents](#clear_intents)
++ [Creating an Update Mask Example](#creating-an-update-mask-example)
 
 
 ## Entity Type Manager
 
-<a name="GetEntityTypes"></a>
 ### get_entity_types
 Retrieves a list of the entity types defined for the specified agent.
 
@@ -55,7 +54,6 @@ Retrieves a list of the entity types defined for the specified agent.
 
 Returns `google.api_core.page_iterator.GRPCIterator`
 
-<a name="ListEntityTypes"></a>
 ### list_entity_types
 Prints out the entity types defined for the specified agent.
 
@@ -65,7 +63,6 @@ Prints out the entity types defined for the specified agent.
 
 No return type.
 
-<a name="GetEntityType"></a>
 ### get_entity_type
 Retrieves the specified entity type.
 
@@ -76,7 +73,6 @@ Retrieves the specified entity type.
 
 Returns `dialogflow.types.EntityType`
 
-<a name="GetEntityTypePath"></a>
 ### get_entity_type_path
 Retrieves the path (or full name) of the specified entity type.
 
@@ -87,7 +83,6 @@ Retrieves the path (or full name) of the specified entity type.
 
 Returns `str` of the form `projects/{project_id}/agent/entityTypes/{entity_type_id}`.
 
-<a name="GetEntityTypeId"></a>
 ### get_entity_type_id
 Retrieves the id number of the specified entity type.
 
@@ -98,7 +93,6 @@ Retrieves the id number of the specified entity type.
 
 Returns `str`, a permutation of numbers, lowercase letters and hyphens.
 
-<a name="CreateEntityType"></a>
 ### create_entity_type
 Creates an entity type with the specified name, kind, and entities.
 The entity type _kind_ can be only one of two values: KIND_MAP and KIND_LIST.
@@ -118,7 +112,6 @@ A `KIND_LIST` entity type allows entities to have only a single synonym that mus
 
 Returns `dialogflow.types.EntityType`, the newly created entity type.
 
-<a name="DeleteEntityType"></a>
 ### delete_entity_type
 Deletes an entity type with the specified name.
 
@@ -129,7 +122,6 @@ Deletes an entity type with the specified name.
 
 Returns `True` on success, `False` on failure.
 
-<a name="ClearEntityTypes"></a>
 ### clear_entity_types
 Clears all entity types belonging to the specified agent.
 
@@ -144,7 +136,7 @@ So, when there are calls to the api that can take a decent amount of time, then 
 
 
 ## Entity Manager
-<a name="CheckEntityType"></a>
+
 ### check_entity_type
 Checks that an entity type exists before attempting any operations on it.
 
@@ -155,7 +147,6 @@ Checks that an entity type exists before attempting any operations on it.
 
 Returns `dialogflow.types.EntityType`
 
-<a name="GetEntities"></a>
 ### get_entities
 Retrieves entities that belong to a specified Entity Type.
 
@@ -166,7 +157,6 @@ Retrieves entities that belong to a specified Entity Type.
 
 Returns `google.protobuf.pyext._message.RepeatedCompositeContainer`.
 
-<a name="ListEntities"></a>
 ### list_entities
 List the entities belonging to the specified Entity Type.
 
@@ -177,7 +167,6 @@ List the entities belonging to the specified Entity Type.
 
 No return type.
 
-<a name="GetEntity"></a>
 ### get_entity
 Retrieves an entity with the specified value belonging to the specified Entity Type.
 
@@ -189,7 +178,6 @@ Retrieves an entity with the specified value belonging to the specified Entity T
 
 Returns `dialogflow.types.EntityType.Entity` on success. `None` on failure.
 
-<a name="AddEntity"></a>
 ### add_entity
 Adds an entity to the specified Entity Type.
 
@@ -201,7 +189,6 @@ Adds an entity to the specified Entity Type.
 
 Returns `google.api_core.operation.Operation`.
 
-<a name="AddEntities"></a>
 ### add_entities
 Adds multiple entities to the specified Entity Type.
 
@@ -213,7 +200,6 @@ Adds multiple entities to the specified Entity Type.
 
 Returns `google.api_core.operation.Operation`.
 
-<a name="UpdateEntities"></a>
 ### update_entities
 Updates the entity values of the specified Entity Type. This differs from [add_entities](#AddEntities) in that it removes pre-existing entity values from the Entity Type.
 
@@ -225,7 +211,6 @@ Updates the entity values of the specified Entity Type. This differs from [add_e
 
 Returns `google.api_core.operation.Operation`.
 
-<a name="DeleteEntity"></a>
 ### delete_entity
 Deletes an entity from the specified Entity Type.
 
@@ -237,7 +222,6 @@ Deletes an entity from the specified Entity Type.
 
 Returns `google.api_core.operation.Operation`.
 
-<a name="DeleteEntities"></a>
 ### delete_entities
 Deletes multiple entities from the specified Entity Type.
 
@@ -249,7 +233,6 @@ Deletes multiple entities from the specified Entity Type.
 
 Returns `google.api_core.operation.Operation`.
 
-<a name="GetEntitySynonyms"></a>
 ### get_entity_synonyms
 Retrieves the synonyms of a entity with the specified value.
 
@@ -263,7 +246,7 @@ Returns `google.protobuf.pyext._message.RepeatedScalarContainer`.
 
 
 ## Intent Manager
-<a name="GetIntents"></a>
+
 ### get_intents
 Retrieves the intents in the specified project.
 
@@ -273,7 +256,6 @@ Retrieves the intents in the specified project.
 
 Returns `google.api_core.page_iterator.GRPCIterator`.
 
-<a name="ListIntents"></a>
 ### list_intents
 Lists the intents in the specified project.
 
@@ -283,7 +265,6 @@ Lists the intents in the specified project.
 
 No return type.
 
-<a name="GetIntentPath"></a>
 ### get_intent_path
 Retrieves full path name of the intent with the specified display name.
 
@@ -294,7 +275,6 @@ Retrieves full path name of the intent with the specified display name.
 
 Returns `str`.
 
-<a name="CreateBlankIntent"></a>
 ### create_blank_intent
 Creates a blank intent. The only thing specified is the intent name.
 
@@ -305,7 +285,6 @@ Creates a blank intent. The only thing specified is the intent name.
 
 Returns `dialogflow.types.Intent`.
 
-<a name="DeleteIntent"></a>
 ### delete_intent
 Deletes the intent with the specified intent name.
 
@@ -316,7 +295,6 @@ Deletes the intent with the specified intent name.
 
 Returns `bool` (The actual delete operation on a dialogflow client returns `None`).
 
-<a name="GetIntent"></a>
 ### get_intent
 Retrieves the intent with the specified intent name. To be able to retrieve the full intent object (with training phrases), you need to make sure that you use the proper view.
 The view parameter can have two possible values : `INTENT_VIEW_FULL` and `INTENT_VIEW_UNSPECIFIED`.
@@ -333,7 +311,6 @@ The view parameter can have two possible values : `INTENT_VIEW_FULL` and `INTENT
 
 Returns `dialogflow.types.Intent`.
 
-<a name="AddIntentPhrases"></a>
 ### add_intent_phrases
 Adds training phrases to the specified intent.
 ##### Creating a training phrase
@@ -345,9 +322,9 @@ A training phrase is composed primarily of training phrase parts and the trainin
 ###### Training phrase Part
 + Type: `dialogflow.types.Intent.TrainingPhrase.Part`
 + Variables :
-    - `text` of type `str`. The string the part corresponds to e.g. **"I like pie"**. Required.
-    - `entity_type` of type `str`. The display name of the Entity Type that the Part corresponds to e.g. **"@PieLovingAssertion"**. Optional. _Note_: Must have **@** prepended to it if used.
-    - `alias` of type `str`. The display name of the intent parameter that the Part corresponds to e.g.  **"LikesPie"**. Optional.
+    - **text** of type `str`. The string the part corresponds to e.g. **"I like pie"**. Required.
+    - **entity_type** of type `str`. The display name of the Entity Type that the Part corresponds to e.g. **"@PieLovingAssertion"**. Optional. _Note_: Must have **@** prepended to it if used.
+    - **alias** of type `str`. The display name of the intent parameter that the Part corresponds to e.g.  **"LikesPie"**. Optional.
 
 ###### Training phrase Type
 + Type: `int`
@@ -374,7 +351,6 @@ A training phrase is composed primarily of training phrase parts and the trainin
 
 Returns `dialogflow.types.Intent`.
 
-<a name="UpdateIntentPhrases"></a>
 ### update_intent_phrases
 Updates training phrases in the specified intent. Differs from [add_intent_phrases](#AddIntentPhrases) in that it deletes existing training_phrases.
 
@@ -386,7 +362,6 @@ Updates training phrases in the specified intent. Differs from [add_intent_phras
 
 Returns `dialogflow.types.Intent`.
 
-<a name="DeleteTrainingPhrases"></a>
 ### delete_intent_phrases
 Deletes all training phrases in the specified intent.
 
@@ -397,7 +372,6 @@ Deletes all training phrases in the specified intent.
 
 Returns `dialogflow.types.Intent`.
 
-<a name="AddOutputContext"></a>
 ### add_output_context
 Adds an output context to the specified intent.
 
@@ -413,7 +387,6 @@ Also, a context's full name is of the form `projects/{project_id}/agent/sessions
 
 Returns `dialogflow.types.Intent`.
 
-<a name="AddInputContext"></a>
 ### add_input_context
 Adds an input context to the specified intent. This context will need to be present amongst the agent during a session for the intent to be invoked.
 
@@ -425,7 +398,6 @@ Adds an input context to the specified intent. This context will need to be pres
 
 Returns `dialogflow.types.Intent`.
 
-<a name="AddParameter"></a>
 ### add_parameter
 Adds a parameter to the specified intent.
 
@@ -439,7 +411,6 @@ _Notes_: The parameter's `entity_type_display_name` value must be an existing en
 
 Returns `dialogflow.types.Intent`.
 
-<a name="ClearIntents"></a>
 ### clear_intents
 Deletes all intents belonging to the agent in the specified project.
 
@@ -449,7 +420,6 @@ Deletes all intents belonging to the agent in the specified project.
 
 Returns `google.api_core.operation.Operation`.
 
-<a name="UpdateMask"></a>
 ### Creating an Update Mask Example
 Just something useful that can come in handy if you want to just update a single specific part of an intent by creating a `dict` object.
 ```
